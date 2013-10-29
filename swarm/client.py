@@ -54,9 +54,9 @@ class Client(object):
         self.maybe_shutdown()
 
     def maybe_shutdown(self):
-        """Shutsdown if no peers have connected within 5 seconds of finishing."""
+        """Shutsdown if no peers have connected within 30 seconds of finishing."""
         if self.num_peers == 0 and \
-                (self.finished_at and self.finished_at < datetime.now() - timedelta(seconds=5)) and \
+                (self.finished_at and self.finished_at < datetime.now() - timedelta(seconds=30)) and \
                 (not self.is_seed or self.tracker.leechers == 0):
             self.done_flag.set()
         else:
